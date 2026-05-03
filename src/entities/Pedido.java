@@ -6,6 +6,7 @@ import java.util.List;
 public class Pedido implements IPedido{
     private int numero;
     private String cliente;
+    private double valorTotal;
     private List<IItemPedido> itens = new ArrayList<>();
 
     public Pedido(int numero,String cliente){
