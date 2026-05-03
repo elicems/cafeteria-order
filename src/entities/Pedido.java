@@ -8,6 +8,11 @@ public class Pedido implements IPedido{
     private String cliente;
     private List<IItemPedido> itens = new ArrayList<>();
 
+    public Pedido(int numero,String cliente){
+        this.numero = numero;
+        this.cliente = cliente;
+    }
+
     @Override
     public int getNumero() {
         return numero;
@@ -47,5 +52,23 @@ public class Pedido implements IPedido{
             valorTotal += item.getValorUnitario() * item.getQuantidade();
         }
         return valorTotal;
+    }
+    public String toString(){
+        return String.format("Pedido #%03d | Cliente: %-10s | Total: R$ %.2f",numero,cliente,getValorTotal());
+    }
+    public String gerarResultadoDetalhado(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n");
+        sb.append("-----------------------------\n");
+        sb.append(String.format("Resumo do pedido #%03d\n",numero));
+        sb.append("Cliente: ").append(cliente).append("\n");
+        sb.append("------------------------------\n");
+        for (IItemPedido item:itens){
+            sb.append(item.toString()).append(" - Subtotal: R$")
+                    .append(String.format("%.2f",item.getSubTotal())).append("\n");
+        }
+        sb.append("----------------------------\n");
+        sb.append(String.format("Valor total: R$ %.2f\n",getValorTotal()));
+        return sb.toString();
     }
 }

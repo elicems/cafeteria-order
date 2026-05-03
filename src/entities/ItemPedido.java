@@ -5,6 +5,12 @@ public class ItemPedido implements IItemPedido{
     private int quantidade;
     private double valorUnitario;
 
+    public ItemPedido(String nome,int quantidade,double valorUnitario){
+        this.nome = nome;
+        this.quantidade = quantidade;
+        this.valorUnitario = valorUnitario;
+    }
+
     @Override
     public String getNome() {
         return nome;
